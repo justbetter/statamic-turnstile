@@ -1,0 +1,76 @@
+{
+    "name": "justbetter/statamic-turnstile",
+    "description": "Cloudflare Turnstile protection for Statamic forms, with Alpine, Vue 3 and vanilla JS adapters",
+    "keywords": [
+        "statamic",
+        "cloudflare",
+        "turnstile",
+        "captcha",
+        "forms"
+    ],
+    "homepage": "https://github.com/justbetter/statamic-turnstile",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kevin Meijer",
+            "email": "kevin@justbetter.nl",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.4",
+        "laravel/framework": "^12.40|^13.0",
+        "statamic/cms": "^6.0"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.29",
+        "larastan/larastan": "^3.9",
+        "orchestra/testbench": "^10.11|^11.0",
+        "pestphp/pest": "^3.7",
+        "phpstan/phpstan-mockery": "^2.0",
+        "phpunit/phpunit": "^11.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "JustBetter\\StatamicTurnstile\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "JustBetter\\StatamicTurnstile\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true,
+            "pixelfear/composer-dist-plugin": false
+        }
+    },
+    "extra": {
+        "statamic": {
+            "name": "Turnstile",
+            "description": "Cloudflare Turnstile protection for Statamic forms"
+        },
+        "laravel": {
+            "providers": [
+                "JustBetter\\StatamicTurnstile\\StatamicTurnstileServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "analyse": "phpstan --memory-limit=1G",
+        "style": "pint --test",
+        "style:fix": "pint",
+        "coverage": "XDEBUG_MODE=coverage php vendor/bin/pest --coverage --min=100",
+        "quality": [
+            "@test",
+            "@analyse",
+            "@style"
+        ]
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
