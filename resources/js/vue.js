@@ -1,11 +1,6 @@
 import { h } from 'vue'
 import { getToken, remove, render, reset } from './core.js'
 
-/**
- * Vue 3 component rendered by <x-turnstile::widget frontend="vue" />.
- *
- * Usage: import TurnstileWidget from '.../resources/js/vue.js'; app.component('turnstile-widget', TurnstileWidget)
- */
 export default {
     name: 'TurnstileWidget',
 

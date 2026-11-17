@@ -16,13 +16,13 @@ abstract class TestCase extends AddonTestCase
     {
         $app['config']->set('app.key', 'base64:7tG0yY7g3QkFrQ+Vk4EBSbcT8D9C4/5Dph1dNRjh6WU=');
         $app['config']->set('cache.default', 'array');
-        $app['config']->set('turnstile.enabled', true);
-        $app['config']->set('turnstile.site_key', 'test-site-key');
-        $app['config']->set('turnstile.secret_key', 'test-secret-key');
+        $app['config']->set('justbetter.turnstile.enabled', true);
+        $app['config']->set('justbetter.turnstile.site_key', 'test-site-key');
+        $app['config']->set('justbetter.turnstile.secret_key', 'test-secret-key');
     }
 
     protected function disableTurnstile(): void
     {
-        config()->set('turnstile.enabled', false);
+        config()->set('justbetter.turnstile.enabled', false);
     }
 }

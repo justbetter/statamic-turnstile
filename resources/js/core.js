@@ -50,7 +50,7 @@ function widgetElements(target) {
 }
 
 /**
- * Render a Turnstile widget into the element. Rendering the same element twice is a no-op.
+ * Rendering the same element twice is a no-op.
  *
  * @param {HTMLElement} element
  * @param {{ sitekey: string, responseFieldName?: string, theme?: string, size?: string, appearance?: string, onVerified?: Function, onExpired?: Function, onError?: Function }} options
@@ -110,9 +110,7 @@ export async function render(element, options = {}) {
     return state.id
 }
 
-/**
- * Reset the widget(s) in a widget element or any ancestor such as the form, to get a fresh single-use token.
- */
+// The target may be the widget element or any ancestor, such as the form.
 export function reset(target) {
     widgetElements(target).forEach((element) => {
         const { id } = widgets.get(element)

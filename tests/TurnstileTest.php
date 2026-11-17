@@ -27,9 +27,9 @@ class TurnstileTest extends TestCase
     public static function inactiveConfig(): array
     {
         return [
-            'disabled' => ['turnstile.enabled', false],
-            'missing site key' => ['turnstile.site_key', null],
-            'missing secret key' => ['turnstile.secret_key', ''],
+            'disabled' => ['justbetter.turnstile.enabled', false],
+            'missing site key' => ['justbetter.turnstile.site_key', null],
+            'missing secret key' => ['justbetter.turnstile.secret_key', ''],
         ];
     }
 
@@ -49,7 +49,7 @@ class TurnstileTest extends TestCase
         $this->assertSame('vue', $this->turnstile()->frontend('vue'));
         $this->assertSame('alpine', $this->turnstile()->frontend('react'));
 
-        config()->set('turnstile.frontend', 'vanilla');
+        config()->set('justbetter.turnstile.frontend', 'vanilla');
 
         $this->assertSame('vanilla', $this->turnstile()->frontend());
     }
@@ -97,7 +97,7 @@ class TurnstileTest extends TestCase
     #[Test]
     public function it_skips_the_hostname_check_when_disabled(): void
     {
-        config()->set('turnstile.check_hostname', false);
+        config()->set('justbetter.turnstile.check_hostname', false);
 
         Http::fake(['*' => Http::response(['success' => true, 'hostname' => 'other.com'])]);
 
@@ -115,8 +115,8 @@ class TurnstileTest extends TestCase
     #[Test]
     public function it_fails_open_when_configured_and_cloudflare_errors(): void
     {
-        config()->set('turnstile.fail_open', true);
-        config()->set('turnstile.timeout', 'invalid');
+        config()->set('justbetter.turnstile.fail_open', true);
+        config()->set('justbetter.turnstile.timeout', 'invalid');
 
         Http::fake(['*' => Http::response('', 500)]);
 

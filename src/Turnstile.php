@@ -12,19 +12,19 @@ class Turnstile
 
     public function isActive(): bool
     {
-        return config('turnstile.enabled') == true
+        return config('justbetter.turnstile.enabled') == true
             && $this->siteKey() !== ''
             && $this->secretKey() !== '';
     }
 
     public function siteKey(): string
     {
-        return $this->stringConfig('turnstile.site_key');
+        return $this->stringConfig('justbetter.turnstile.site_key');
     }
 
     public function frontend(?string $frontend = null): string
     {
-        $frontend ??= $this->stringConfig('turnstile.frontend');
+        $frontend ??= $this->stringConfig('justbetter.turnstile.frontend');
 
         return in_array($frontend, self::FRONTENDS, true) ? $frontend : 'alpine';
     }
@@ -37,8 +37,8 @@ class Turnstile
 
         try {
             $response = Http::asForm()
-                ->timeout($this->intConfig('turnstile.timeout', 5))
-                ->post($this->stringConfig('turnstile.verify_url'), array_filter([
+                ->timeout($this->intConfig('justbetter.turnstile.timeout', 5))
+                ->post($this->stringConfig('justbetter.turnstile.verify_url'), array_filter([
                     'secret' => $this->secretKey(),
                     'response' => $token,
                     'remoteip' => $ip,
@@ -61,7 +61,7 @@ class Turnstile
 
         $verifiedHostname = $response->json('hostname');
 
-        if (config('turnstile.check_hostname') == true && $hostname !== null && is_string($verifiedHostname) && $verifiedHostname !== $hostname) {
+        if (config('justbetter.turnstile.check_hostname') == true && $hostname !== null && is_string($verifiedHostname) && $verifiedHostname !== $hostname) {
             Log::info('Turnstile hostname mismatch.', [
                 'expected' => $hostname,
                 'actual' => $verifiedHostname,
@@ -75,12 +75,12 @@ class Turnstile
 
     protected function secretKey(): string
     {
-        return $this->stringConfig('turnstile.secret_key');
+        return $this->stringConfig('justbetter.turnstile.secret_key');
     }
 
     protected function unreachable(string $reason): bool
     {
-        $failOpen = config('turnstile.fail_open') == true;
+        $failOpen = config('justbetter.turnstile.fail_open') == true;
 
         Log::warning('Turnstile verification could not be completed.', [
             'reason' => $reason,

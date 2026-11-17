@@ -1,0 +1,10 @@
+laravel: '@testbench'
+
+providers:
+  - JustBetter\StatamicTurnstile\StatamicTurnstileServiceProvider
+
+workbench:
+  start: '/vendor/orchestra/testbench-core/laravel/public'
+  install: true
+  discovers:
+    - web

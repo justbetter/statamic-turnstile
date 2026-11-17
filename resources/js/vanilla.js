@@ -20,10 +20,7 @@ function eachWidget(node, callback) {
     node.querySelectorAll(SELECTOR).forEach(callback)
 }
 
-/**
- * Render every <x-turnstile::widget frontend="vanilla" /> on the page, including ones added later.
- * Do not use inside DOM controlled by Vue; use the Vue component there instead.
- */
+// Do not use inside DOM controlled by Vue; use the Vue component there instead.
 export function init(root = document) {
     root.querySelectorAll(SELECTOR).forEach((element) => render(element, optionsFor(element)))
 

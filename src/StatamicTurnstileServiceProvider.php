@@ -23,7 +23,7 @@ class StatamicTurnstileServiceProvider extends AddonServiceProvider
     {
         parent::register();
 
-        $this->mergeConfigFrom(__DIR__.'/../config/turnstile.php', 'turnstile');
+        $this->mergeConfigFrom(__DIR__.'/../config/turnstile.php', 'justbetter.turnstile');
 
         $this->app->singleton(Turnstile::class);
     }
@@ -39,8 +39,8 @@ class StatamicTurnstileServiceProvider extends AddonServiceProvider
     protected function bootPackageConfig(): static
     {
         $this->publishes([
-            __DIR__.'/../config/turnstile.php' => config_path('turnstile.php'),
-        ], 'statamic-turnstile-config');
+            __DIR__.'/../config/turnstile.php' => config_path('justbetter/turnstile.php'),
+        ], 'justbetter-turnstile');
 
         return $this;
     }

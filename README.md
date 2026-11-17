@@ -21,7 +21,7 @@ TURNSTILE_SECRET_KEY=
 TURNSTILE_FRONTEND=alpine
 ```
 
-Optionally publish the config with `php artisan vendor:publish --tag=statamic-turnstile-config`.
+Optionally publish the config with `php artisan vendor:publish --tag=justbetter-turnstile` (published to `config/justbetter/turnstile.php`).
 
 | Key | Default | |
 |---|---|---|

@@ -9,17 +9,11 @@ use Statamic\Tags\Tags;
 
 class Turnstile extends Tags
 {
-    /**
-     * {{ turnstile }}
-     */
     public function index(): string
     {
         return $this->widget();
     }
 
-    /**
-     * {{ turnstile:widget handle="turnstile" frontend="vanilla" }}
-     */
     public function widget(): string
     {
         // Blade::renderComponent() does not call shouldRender(), so check the gate here.
